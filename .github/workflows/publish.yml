@@ -1,0 +1,40 @@
+name: deploy-angular-app
+
+# Only run this when the master branch changes
+on:
+  push:
+    branches:
+    - main
+    - actions
+
+# This job installs dependencies, build the app, and pushes it to `gh-pages`
+jobs:
+  deploy-book:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    # Install dependencies
+    - name: Set up Node 16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+        cache-dependency-path: package-lock.json
+
+    - name: Install dependencies
+      run: |
+        npm install -g @angular/cli@13.3.6
+        npm install
+
+    # Build the app
+    - name: Build the app
+      run: |
+        ng build --base-href=/
+    
+    # Push the app to github-pages
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v3.5.9
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: dist/my-cv-with-angular
