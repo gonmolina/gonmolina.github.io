@@ -1,0 +1,6 @@
+    <nav>
+        <ul>
+            <li *ngFor="let a of articlesData"><a (click)="setArticleVisible(a)" >{{ a.label }}</a></li>
+            <!--<li><a href="#elements">Elements</a></li>-->
+        </ul>
+    </nav>

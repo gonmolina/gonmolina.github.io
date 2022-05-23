@@ -1,0 +1,6 @@
+<div id="main">
+    <div  id="article">
+        <div class="close" (click)="onClose()">Close</div>
+        <div [innerHTML]="article ? sanitizer(this.article.doc!) : ''" ></div>
+    </div> 
+</div>

@@ -1,0 +1,17 @@
+<div [class.is-preload]="isPreload"   id="body">
+  <header id="header" *ngIf="showHeader" @insertRemove>
+      <div class="logo">
+        <span class="icon">GDM</span>
+
+      </div>
+      <div class="content">
+        <div class="inner">
+          <h1>Gonzalo Molina</h1>
+          <p>Site under construction.</p>
+        </div>
+      </div>
+      <app-bottom-nav [articlesData]="data" (articleSelected)="selectArticle($event)"></app-bottom-nav>
+  </header>
+</div>
+ 
+    <app-article *ngIf="showArticle" @insertRemove [article]="articleSelected" (escapePress)="handleEscapePress()"></app-article>
